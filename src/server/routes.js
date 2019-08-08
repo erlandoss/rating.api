@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-
-const Repository = require('./repository');
+const Db = require('./db');
 
 
 /*
@@ -17,7 +16,7 @@ router.post('/api/login', passport.authenticate('local'), (req, res) => {
 
 router.post('/api/signup', function(req, res){
 
-    const created = Repository.createUser(req.body.userId, req.body.password);
+    const created = Db.createUser(req.body.userId, req.body.password);
 
     if(! created){
         res.status(400).send();
@@ -72,27 +71,27 @@ router.get("/api/user", (req, res) => {
     res.status(401).send();
 });
 
-router.get("api/itemList", (req, res) => {
+router.post("/api/itemList", (req, res) => {
 
-    console.log("populate1");
-    const itemsArray = Repository.getItemsList();
-    if (itemsArray) {
+    const itemsArray = Db.getItemsList(5);
+    console.log(itemsArray);
+    if(itemsArray) {
         res.json({
-            rank1: "" + itemsArray[0].id + " - rating: " + itemsArray[0].avgRating,
-            rank2: itemsArray[1],
-            rank3: itemsArray[2],
-            rank4: itemsArray[3],
-            rank5: itemsArray[4],
+            rank1: itemsArray[0].id + " - rating: " + itemsArray[0].avgRating,
+            rank2: itemsArray[1].id + " - rating: " + itemsArray[1].avgRating,
+            rank3: itemsArray[2].id + " - rating: " + itemsArray[2].avgRating,
+            rank4: itemsArray[3].id + " - rating: " + itemsArray[3].avgRating,
+            rank5: itemsArray[4].id + " - rating: " + itemsArray[4].avgRating,
         });
-        return;
+        res.send();
     }
-        res.status(404).send();
+    res.status(404).send();
 });
 
 //ORIGINAL CODE
 router.post("/api/search" , (req, res) => {
     const itemSearch = req.body;
-    const search = Repository.getItem(itemSearch.search);
+    const search = Db.getItem(itemSearch.search);
     if(search) {
         res.json({
             itemId: search.id,

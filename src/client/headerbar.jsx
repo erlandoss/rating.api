@@ -30,7 +30,7 @@ class HeaderBar extends React.Component {
   renderLoggedIn(userId) {
     return (
       <div className="header">
-        <h3 classNa me="notLoggedInMsg">
+        <h3 className="notLoggedInMsg">
           Welcome {userId}
           !!!
         </h3>

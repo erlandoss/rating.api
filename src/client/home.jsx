@@ -10,7 +10,7 @@ export class Home extends React.Component {
             searchResult: "",
             searchRating: "",
             errorMsg: null,
-            rank1: "test1",
+            rank1: "",
             rank2: "",
             rank3: "",
             rank4: "",
@@ -20,7 +20,7 @@ export class Home extends React.Component {
 
     componentDidMount() {
         this.retrieveProfile();
-        //this.retrieveList();
+        this.populateList();
     }
 
        onItemSearch = (event) => {
@@ -52,17 +52,8 @@ export class Home extends React.Component {
             this.setState({ errorMsg: "Failed to find user" });
             return;
          }
-        /*
-        if (response.status !== 204) {
-            this.setState({
-                errorMsg:
-                    "Error when connecting to server: status code " + response.status
-            });
-        }*/
-        console.log(responsePayload.itemId);
         this.setState({searchResult: responsePayload.itemId});
-        this.setState({searchRating: responsePayload.rating});
-        this.setState({rank1: responsePayload.itemId});
+        this.setState({searchRating: "rating: " + responsePayload.rating});
     };
 
     //MOSTLY ORIGINAL CODE
@@ -99,19 +90,19 @@ export class Home extends React.Component {
         }
     }
 
-    testPopulateList() {
-        this.setState({
-            rank1: "charmander",
-        });
-    }
-
     populateList = async () => {
         const url = "/api/itemList";
 
         let response;
 
         try {
-            response = await fetch(url);
+            response = await fetch(url, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            });
         } catch (err) {
             this.setState({
                 errorMsg: "ERROR when retrieving itemlist: " + err,
@@ -126,7 +117,6 @@ export class Home extends React.Component {
 
         if (response.status === 200) {
             const payload = await response.json();
-
             this.setState({
                 errorMsg: null,
                 rank1: payload.rank1,
@@ -135,7 +125,6 @@ export class Home extends React.Component {
                 rank4: payload.rank4,
                 rank5: payload.rank5,
             });
-            return;
         } else {
             this.setState({
                 errorMsg: "Issue with HTTP connection: status code " + response.status,
@@ -147,8 +136,7 @@ export class Home extends React.Component {
     renderLoggedIn() {
         return (
             <div className="signupArea">
-                <p>Name: {this.props.userId}</p>
-                Search:{""}
+                Search for a pokemon:{""}
                 <input
                     type="text"
                     name="search"
@@ -168,7 +156,7 @@ export class Home extends React.Component {
         return (
             <div>
         <span>
-          To be able to test see your account you need to log in first. If you do not
+          To be able to test search for more pokemon you need to log in first. If you do not
           have an account, you can sign up to create a new one.
         </span>
             </div>
@@ -177,8 +165,8 @@ export class Home extends React.Component {
 
     renderCardList() {
         return (
-            <div>
-                <p>Test list</p>
+            <div className="rankContent">
+                <p className="rankHeader">Top 5</p>
                 <ol className="rankList">
                     <li>{this.state.rank1}</li>
                     <li>{this.state.rank2}</li>
@@ -229,7 +217,7 @@ export class Home extends React.Component {
                     {error}
                 </div>
 
-                <div className="cardContent">
+                <div className="userContent">
                     {cardList}
                 </div>
             </div>

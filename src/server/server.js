@@ -1,9 +1,9 @@
 const app = require("./app");
-const rep = require("./repository");
+const Db = require("./db");
 
 const port = process.env.PORT || 8080;
 
-rep.addTestUsers();
+Db.addTestUsers();
 app.listen(port, () => {
     console.log('Started NodeJS server on port ' + port);
 });

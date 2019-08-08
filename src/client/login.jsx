@@ -81,32 +81,27 @@ class Login extends React.Component {
                     updateLoggedInUserId={this.props.updateLoggedInUserId}
                 />
                 <div className="signupArea">
-                    <div>
-                        <p>User Id:</p>
-                        <input
-                            type="text"
-                            value={this.state.userId}
-                            onChange={this.onUserIdChange}
-                        />
-                    </div>
-                    <div>
-                        <p>Password:</p>
-                        <input
-                            type="password"
-                            value={this.state.password}
-                            onChange={this.onPasswordChange}
-                        />
-                    </div>
+                    User Id:{""}
+                    <input
+                        type="text"
+                        value={this.state.userId}
+                        onChange={this.onUserIdChange}
+                    />
+
+                    Password:{""}
+                    <input
+                        type="password"
+                        value={this.state.password}
+                        onChange={this.onPasswordChange}
+                    />
 
                     {error}
 
-                    <div className="loginRegisterArea">
-                        <div className="btn" onClick={this.doLogIn}>
-                            Log In
-                        </div>
+                    <button className="btnSearch" onClick={this.doLogIn}>
+                        Log In
+                    </button>
 
-                        <Link to={"/signup"}>Register</Link>
-                    </div>
+                    <Link to={"/signup"}>Register</Link>
                 </div>
             </div>
         );

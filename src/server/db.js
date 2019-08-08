@@ -1,4 +1,3 @@
-
 /*
     Here we "simulate" a database with in-memory Map.
     Furthermore, we do not deal with the "proper" handling of
@@ -6,21 +5,38 @@
     but rather hashed with secure algorithms like BCrypt.
  */
 
-const users = new Map();
-const messages = [];
-let items = [];
-const messageCounter = null;
+//Mostly original code
 
-//FUNCTION ORIGINAL CODE
+const users = new Map();
+let items = [];
+
 function addTestData () {
     const user1 = createUser("jon", "123");
     const user2 = createUser("jane", "123" );
     users.set(user1.id, user1);
     users.set(user2.id, user2);
-    const item1 = createItem("charmander", 5);
-    const item2 = createItem("bulbasaur", 4);
+    const item1 = createItem("bulbasaur", 4.7);
+    const item2 = createItem("ivysayr", 4);
+    const item3 = createItem("venusaur", 3);
+    const item4 = createItem("charmander", 4.6);
+    const item5 = createItem("charmeleon", 2.1);
+    const item6 = createItem("charizard", 5);
+    const item7 = createItem("squirtle", 2);
+    const item8 = createItem("wartortle", 3);
+    const item9 = createItem("blastoise", 4);
+    const item10 = createItem("caterpie", 1);
     items.push(item1);
     items.push(item2);
+    items.push(item3);
+    items.push(item4);
+    items.push(item5);
+    items.push(item6);
+    items.push(item7);
+    items.push(item8);
+    items.push(item9);
+    items.push(item10);
+    items.sort((a, b) => (a.avgRating < b.avgRating) ? 1 : -1);
+    console.log(items);
 }
 
 function getUser(id){
@@ -35,27 +51,14 @@ function getItem(id){
     }
 }
 
-function getItemsList(){
-    items.sort(compare);
+function getItemsList(top){
+
     let itemArray = [];
 
-    for (let i = 0; i < 5; i++) {
-        itemArray.push(items[i])
+    for (let i = 0; i < top; i++) {
+        itemArray.push(items[i]);
     }
     return itemArray;
-}
-
-function compare(a, b) {
-    const ratingA = a.avgRating;
-    const ratingB = b.avgRating;
-
-    let comparison = 0;
-    if (ratingA > ratingB) {
-        comparison = 1;
-    } else if (ratingA < ratingB) {
-        comparison = -1;
-    }
-    return comparison * -1;
 }
 
 function verifyUser(id, password){
@@ -65,7 +68,6 @@ function verifyUser(id, password){
     if(user === undefined){
         return false;
     }
-
     /*
         WARNING: remember that those passwords should be hashed,
         with salt and pepper...
@@ -88,10 +90,6 @@ function createItem(id, rating) {
     }
 
     items.push(item);
-    return true;
-}
-
-function setAvgRating(id) {
 }
 
 function createUser(id, password){
@@ -110,8 +108,10 @@ function createUser(id, password){
     return true;
 }
 
+/*
+ * Planned functionality for users to rate items
 function createRating(userId, itemId, rating){
-
 }
+ */
 
-module.exports = {addTestUsers: addTestData, getUser, verifyUser, createUser, getItem, getItemsList, createItem};
+module.exports = {addTestUsers: addTestData, getUser, verifyUser, createUser, getItem, getItemsList};

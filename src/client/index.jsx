@@ -5,7 +5,6 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import {Home} from "./home";
 import Login from "./login";
 import SignUp from "./signup";
-import Search from "./search";
 
 //SOME CODE SNIPPETS FROM LESSON 08 WITH ADDED NEW CODE
 export class App extends React.Component {
@@ -56,12 +55,6 @@ export class App extends React.Component {
                                                       userId={this.state.userId}
                                                       updateLoggedInUserId = {this.updateLoggedInUserId}
                                />}/>
-                        <Route exact path="/search"
-                               render={props => <Search {...props}
-                                                      userId={this.state.userId}
-                                                      updateLoggedInUserId = {this.updateLoggedInUserId}
-                               />}/>
-
                         <Route component={this.notFound}/>
                     </Switch>
                 </div>

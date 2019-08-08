@@ -12,6 +12,7 @@ body {
 }
 
 .btn {
+  position: relative;
   border: 2px solid rgb(30, 30, 30);
   border-radius: 5px;
   background-color: rgb(207, 205, 200);
@@ -33,39 +34,35 @@ body {
   margin: 30px;
 }
 
-.msgDiv {
-  display: inline-flex;
-  justify-content: space-evenly;
-  flex-direction: row;
-  position: relative;
-  width: 100%;
-}
-
 .notLoggedInMsg {
   display: inline;
 }
-.myPage {
+
+.MyPage {
   font-size: 3em;
   border-bottom: 1px solid rgb(30, 30, 30);
-  padding-bottom: 0px;
-}
-
-.userContent {
-  text-align: center;
 }
 
 .signupArea {
-  width: 100px;
+  width: 200px;
   padding-top: 50px;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
+}
+
+.rankContent {
+  display: inline-flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.rankHeader {
+  font-size: 2em;
 }
 
 .rankList {
   width: 200px;
-  padding-top: 50px;
 }
 
 .logOutBtn {
@@ -95,12 +92,4 @@ body {
 .errorMsg {
   color: red;
   font-size: 2em;
-}
-
-.timeline {
-
-}
-
-.search {
-
 }

@@ -6,7 +6,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
 const cors = require('cors');
 const routes = require('./routes');
-const Repository = require('./repository');
+const Db = require('./db');
 const app = express();
 
 //NOT ORIGINAL CODE, TAKEN FROM LESSON 08
@@ -68,13 +68,13 @@ passport.use(new LocalStrategy(
     },
     function (userId, password, done) {
 
-        const ok = Repository.verifyUser(userId, password);
+        const ok = Db.verifyUser(userId, password);
 
         if (!ok) {
             return done(null, false, {message: 'Invalid username/password'});
         }
 
-        const user = Repository.getUser(userId);
+        const user = Db.getUser(userId);
         return done(null, user);
     }
 ));
@@ -92,7 +92,7 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(function (id, done) {
 
-    const user = Repository.getUser(id);
+    const user = Db.getUser(id);
 
     if (user !== undefined) {
         done(null, user);
