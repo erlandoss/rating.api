@@ -103,7 +103,7 @@ function createUser(id, password){
 
     const user = {
         id: id,
-        ratingCount: null,
+        ratingCount: 1,
         password: password
     };
 
@@ -117,4 +117,4 @@ function createRating(userId, itemId, rating){
 }
  */
 
-module.exports = {addTestUsers: addTestData, getUser, verifyUser, createUser, getItem, getItemsList};
+module.exports = {addTestData, getUser, verifyUser, createUser, getItem, getItemsList};

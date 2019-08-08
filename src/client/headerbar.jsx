@@ -22,19 +22,16 @@ class HeaderBar extends React.Component {
       alert("Error when connecting to server: status code " + response.status);
       return;
     }
-
     this.props.updateLoggedInUserId(null);
     this.props.history.push("/");
   };
 
-  renderLoggedIn(userId) {
+  renderLoggedIn(userId, ratingCount) {
     return (
       <div className="header">
-        <h3 className="notLoggedInMsg">
+        <h2 className="notLoggedInMsg">
           Welcome {userId}
-          !!!
-        </h3>
-
+        </h2>
         <div className="logOutBtn" onClick={this.doLogout}>
           Logout
         </div>
@@ -60,13 +57,13 @@ class HeaderBar extends React.Component {
 
   render() {
     const userId = this.props.userId;
-    const surname = this.props.surname;
+    //const ratingCount = this.props.ratingCount;
 
-    let content;
+    let headerContent;
     if (userId === null || userId === undefined) {
-      content = this.renderNotLoggedIn();
+      headerContent = this.renderNotLoggedIn();
     } else {
-      content = this.renderLoggedIn(userId, surname);
+      headerContent = this.renderLoggedIn(userId/*, ratingCount*/);
     }
 
     return (
@@ -74,7 +71,7 @@ class HeaderBar extends React.Component {
         <Link className="home btn" to={"/"}>
           Home
         </Link>
-        {content}
+        {headerContent}
       </div>
     );
   }

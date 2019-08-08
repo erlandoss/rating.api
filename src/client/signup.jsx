@@ -2,7 +2,7 @@ import React from "react";
 import HeaderBar from "./headerbar";
 import { withRouter } from "react-router-dom";
 
-//MOST CODE TAKEN FROM LESSON 08 AND MODIFIED TO FIT MY APP
+//Mostly non-original but altered code
 class SignUp extends React.Component {
     constructor(props) {
         super(props);
@@ -96,35 +96,34 @@ class SignUp extends React.Component {
                     updateLoggedInUserId={this.props.updateLoggedInUserId}
                 />
                 <div className="signupArea">
-                    <div>
-                        <p>User Id:</p>
-                        <input
-                            type="text"
-                            value={this.state.userId}
-                            onChange={this.onUserIdChange}
-                        />
-                    </div>
-                    <div>
-                        <p>Password:</p>
-                        <input
-                            type="password"
-                            value={this.state.password}
-                            onChange={this.onPasswordChange}
-                        />
-                    </div>
-                    <div>
-                        <p>Confirm:</p>
-                        <input
-                            type="password"
-                            value={this.state.confirm}
-                            onChange={this.onConfirmChange}
-                        />
-                        <div>{confirmMsg}</div>
-                    </div>
+                    <p>User Id:</p>
+                    <input
+                        type="text"
+                        value={this.state.userId}
+                        onChange={this.onUserIdChange}
+                    />
+
+                    <p>Password:</p>
+                    <input
+                        type="password"
+                        value={this.state.password}
+                        onChange={this.onPasswordChange}
+                    />
+
+                    <p>Confirm:</p>
+                    <input
+                        type="password"
+                        value={this.state.confirm}
+                        onChange={this.onConfirmChange}
+                    />
+                    <div>{confirmMsg}</div>
+                    <p></p>
+
                     {error}
-                    <div className="btn" onClick={this.doSignUp}>
+
+                    <button className="btnSearch" onClick={this.doSignUp}>
                         Sign Up
-                    </div>
+                    </button>
                 </div>
             </div>
         );

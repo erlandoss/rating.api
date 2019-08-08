@@ -1,6 +1,8 @@
 import React from "react";
 import HeaderBar from "./headerbar";
 
+//Mostly original code
+
 export class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -26,8 +28,6 @@ export class Home extends React.Component {
         this.setState({itemSearch: event.target.value});
     }
 
-
-    //ORIGINAL CODE
     searchItem = async () => {
         const url = "/api/search";
         const payload = {search: this.state.itemSearch};
@@ -55,7 +55,6 @@ export class Home extends React.Component {
         this.setState({searchRating: "rating: " + responsePayload.rating});
     };
 
-    //MOSTLY ORIGINAL CODE
     async retrieveProfile() {
         const url = "/api/user";
 
@@ -82,6 +81,7 @@ export class Home extends React.Component {
                 errorMsg: null,
             });
             this.props.updateLoggedInUserId(payload.userId);
+            this.props.updateLoggedInUserRatingCount(payload.ratingCount);
         } else {
             this.setState({
                 errorMsg: "Issue with HTTP connection: status code " + response.status,
@@ -131,7 +131,6 @@ export class Home extends React.Component {
         }
     };
 
-    //ORIGINAL CODE
     renderLoggedIn() {
         return (
             <div className="signupArea">
@@ -153,10 +152,10 @@ export class Home extends React.Component {
     renderNotLoggedIn() {
         return (
             <div>
-        <span>
-          To be able to test search for more pokemon ratings you need to login. If you do not
-          have an account, you can sign up to create a new one.
-        </span>
+                <p>
+                    To be able to test search for more pokemon ratings you need to login. If you do not
+                    have an account, you can sign up to create a new one.
+                </p>
             </div>
         );
     }

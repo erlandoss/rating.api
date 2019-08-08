@@ -2,7 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import HeaderBar from "./headerbar";
 
-//NOT ORIGINAL CODE
+//Mostly non-original but altered code
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -81,14 +81,14 @@ class Login extends React.Component {
                     updateLoggedInUserId={this.props.updateLoggedInUserId}
                 />
                 <div className="signupArea">
-                    User Id:{""}
+                    <p>User Id:</p>
                     <input
                         type="text"
                         value={this.state.userId}
                         onChange={this.onUserIdChange}
                     />
 
-                    Password:{""}
+                    <p>Password:</p>
                     <input
                         type="password"
                         value={this.state.password}
@@ -97,11 +97,13 @@ class Login extends React.Component {
 
                     {error}
 
+                    <p></p>
                     <button className="btnSearch" onClick={this.doLogIn}>
                         Log In
                     </button>
+                    <p></p>
 
-                    <Link to={"/signup"}>Register</Link>
+                    <Link to={"/signup"}>Register new user</Link>
                 </div>
             </div>
         );

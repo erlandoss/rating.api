@@ -1,9 +1,9 @@
 const request = require('supertest');
 const app = require('../../src/server/app');
 
-
 let counter = 0;
 
+//Semi-original code, used previously in another project by myself and group
 
 test("Test fail login", async () =>{
 
@@ -64,8 +64,8 @@ test("Test create user and get data", async () =>{
 
     expect(response.statusCode).toBe(200);
     expect(response.body.userId).toBe(userId);
-    expect(response.body.balance).toBe(1000);
-    //don't really want to return the password...
+
+    //hopefully it will not return the password
     expect(response.body.password).toBeUndefined();
 });
 
@@ -98,8 +98,8 @@ test("Test create user, login in a different session and get data", async () =>{
 
     expect(response.statusCode).toBe(200);
     expect(response.body.userId).toBe(userId);
-    expect(response.body.balance).toBe(1000);
-    //don't really want to return the password...
+
+    //hopefully it will not return the password
     expect(response.body.password).toBeUndefined();
 });
 

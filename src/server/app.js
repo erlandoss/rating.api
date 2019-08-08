@@ -9,7 +9,7 @@ const routes = require('./routes');
 const Db = require('./db');
 const app = express();
 
-//NOT ORIGINAL CODE, TAKEN FROM LESSON 08
+//Not original code, it was taken from a lesson
 
 /*
    Note: this could be controlled with an environmental variable

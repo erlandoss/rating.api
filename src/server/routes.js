@@ -3,12 +3,13 @@ const router = express.Router();
 const passport = require('passport');
 const Db = require('./db');
 
-
+//Some original code and some taken from lessons and examples
 /*
     The login will apply the Passport filter to check if provided
     username/password are correct.
     See "passport.use(new LocalStrategy" in app.js
  */
+
 router.post('/api/login', passport.authenticate('local'), (req, res) => {
 
     res.status(204).send();
@@ -60,10 +61,7 @@ router.get("/api/user", (req, res) => {
     if(req.user){
         res.json({
             userId: req.user.id,
-            surname: req.user.surname,
-            hometown: req.user.hometown,
-            dateOfBirth: req.user.dateOfBirth,
-            balance: req.user.balance
+            ratingCount: req.user.ratingCount
         });
         return;
     }
@@ -71,6 +69,7 @@ router.get("/api/user", (req, res) => {
     res.status(401).send();
 });
 
+//Original code
 router.post("/api/itemList", (req, res) => {
 
     const itemsArray = Db.getItemsList(5);
@@ -87,7 +86,7 @@ router.post("/api/itemList", (req, res) => {
     res.status(404).send();
 });
 
-//ORIGINAL CODE
+//Original code
 router.post("/api/search" , (req, res) => {
     const itemSearch = req.body;
     const search = Db.getItem(itemSearch.search);

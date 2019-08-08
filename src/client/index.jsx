@@ -6,7 +6,8 @@ import {Home} from "./home";
 import Login from "./login";
 import SignUp from "./signup";
 
-//SOME CODE SNIPPETS FROM LESSON 08 WITH ADDED NEW CODE
+//Altered code from lessons to fit this project
+
 export class App extends React.Component {
 
     constructor(props) {
@@ -14,6 +15,7 @@ export class App extends React.Component {
 
         this.state = {
             userId: null,
+            ratingCount: 0
         };
     }
 
@@ -21,8 +23,11 @@ export class App extends React.Component {
         this.setState({userId: userId});
     };
 
-    notFound() {
+    updateLoggedInUserRatingCount = (ratingCount) => {
+        this.setState({ratingCount: ratingCount});
+    };
 
+    notFound() {
         return (
             <div>
                 <h2>NOT FOUND: 404</h2>
@@ -31,7 +36,6 @@ export class App extends React.Component {
                 </p>
             </div>
         );
-
     };
 
     render() {
@@ -43,17 +47,23 @@ export class App extends React.Component {
                         <Route exact path="/login"
                                render={props => <Login {...props}
                                                        userId={this.state.userId}
+                                                       ratingCount={this.state.ratingCount}
                                                        updateLoggedInUserId = {this.updateLoggedInUserId}
+                                                       updateLoggedInUserRatingCount = {this.updateLoggedInUserRatingCount}
                                />}/>
                         <Route exact path="/signup"
                                render={props => <SignUp {...props}
                                                         userId={this.state.userId}
+                                                        ratingCount={this.state.ratingCount}
                                                         updateLoggedInUserId = {this.updateLoggedInUserId}
+                                                        updateLoggedInUserRatingCount = {this.updateLoggedInUserRatingCount}
                                />}/>
                         <Route exact path="/"
                                render={props => <Home {...props}
                                                       userId={this.state.userId}
+                                                      ratingCount={this.state.ratingCount}
                                                       updateLoggedInUserId = {this.updateLoggedInUserId}
+                                                      updateLoggedInUserRatingCount = {this.updateLoggedInUserRatingCount}
                                />}/>
                         <Route component={this.notFound}/>
                     </Switch>

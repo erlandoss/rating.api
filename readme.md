@@ -5,3 +5,4 @@ This would later be used for the profile of the users.
 After doing some testing on the login I found out that since I was
 showing the profile info based on what was written in the sign up form the info
 would not be shown if I used the login method instead on an existing user. 
+
