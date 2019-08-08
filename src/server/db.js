@@ -36,7 +36,6 @@ function addTestData () {
     items.push(item9);
     items.push(item10);
     items.sort((a, b) => (a.avgRating < b.avgRating) ? 1 : -1);
-    console.log(items);
 }
 
 function getUser(id){

@@ -74,7 +74,6 @@ router.get("/api/user", (req, res) => {
 router.post("/api/itemList", (req, res) => {
 
     const itemsArray = Db.getItemsList(5);
-    console.log(itemsArray);
     if(itemsArray) {
         res.json({
             rank1: itemsArray[0].id + " - rating: " + itemsArray[0].avgRating,
