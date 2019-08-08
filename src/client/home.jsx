@@ -20,7 +20,6 @@ export class Home extends React.Component {
 
     componentDidMount() {
         this.retrieveProfile();
-        this.populateList();
     }
 
        onItemSearch = (event) => {
@@ -140,14 +139,13 @@ export class Home extends React.Component {
                 <input
                     type="text"
                     name="search"
-                    value={this.state.itemSearch}
+                    value={this.state.itemSearch.toLowerCase()}
                     onChange={this.onItemSearch}
                     className="lastInput"
                 />
                 <button className="btnSearch" onClick={this.searchItem}>Search</button>
                 <p>{this.state.searchResult}</p>
                 <p>{this.state.searchRating}</p>
-                <button className="btnSearch" onClick={this.populateList}>Populate list</button>
             </div>
         );
     }
@@ -156,7 +154,7 @@ export class Home extends React.Component {
         return (
             <div>
         <span>
-          To be able to test search for more pokemon you need to log in first. If you do not
+          To be able to test search for more pokemon ratings you need to login. If you do not
           have an account, you can sign up to create a new one.
         </span>
             </div>
@@ -167,6 +165,7 @@ export class Home extends React.Component {
         return (
             <div className="rankContent">
                 <p className="rankHeader">Top 5</p>
+                <button className="btnSearch" onClick={this.populateList}>Show top 5</button>
                 <ol className="rankList">
                     <li>{this.state.rank1}</li>
                     <li>{this.state.rank2}</li>
@@ -209,7 +208,7 @@ export class Home extends React.Component {
                 />
 
                 <div>
-                    <p className="MyPage">My Page</p>
+                    <p className="MyPage">Pokemon ratings</p>
                 </div>
 
                 <div className="userContent">

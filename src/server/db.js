@@ -16,15 +16,17 @@ function addTestData () {
     users.set(user1.id, user1);
     users.set(user2.id, user2);
     const item1 = createItem("bulbasaur", 4.7);
-    const item2 = createItem("ivysayr", 4);
+    const item2 = createItem("ivysaur", 3.9);
     const item3 = createItem("venusaur", 3);
-    const item4 = createItem("charmander", 4.6);
+    const item4 = createItem("charmander", 3.6);
     const item5 = createItem("charmeleon", 2.1);
     const item6 = createItem("charizard", 5);
     const item7 = createItem("squirtle", 2);
     const item8 = createItem("wartortle", 3);
     const item9 = createItem("blastoise", 4);
-    const item10 = createItem("caterpie", 1);
+    const item10 = createItem("caterpie", 1.3);
+    const item11 = createItem("metapod", 2.4);
+    const item12 = createItem("butterfree", 4.2);
     items.push(item1);
     items.push(item2);
     items.push(item3);
@@ -35,6 +37,8 @@ function addTestData () {
     items.push(item8);
     items.push(item9);
     items.push(item10);
+    items.push(item11);
+    items.push(item12);
     items.sort((a, b) => (a.avgRating < b.avgRating) ? 1 : -1);
 }
 
