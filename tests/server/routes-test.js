@@ -3,7 +3,7 @@ const app = require('../../src/server/app');
 
 let counter = 0;
 
-//Semi-original code, used previously in another project by myself and group
+//Semi-original code, used previously in another project by myself and group and modified slightly for this project.
 
 test("Test fail login", async () =>{
 
@@ -68,7 +68,6 @@ test("Test create user and get data", async () =>{
     //hopefully it will not return the password
     expect(response.body.password).toBeUndefined();
 });
-
 
 test("Test create user, login in a different session and get data", async () =>{
 
