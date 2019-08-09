@@ -1,4 +1,5 @@
 import React from "react";
+import Select from "react-select";
 import HeaderBar from "./headerbar";
 
 //Mostly original code
@@ -11,12 +12,12 @@ export class Home extends React.Component {
             itemSearch: "",
             searchResult: "",
             searchRating: "",
+            searchType: "",
             errorMsg: null,
+            filter: "All",
             rank1: "",
             rank2: "",
             rank3: "",
-            rank4: "",
-            rank5: "",
         };
     }
 
@@ -24,8 +25,12 @@ export class Home extends React.Component {
         this.retrieveProfile();
     }
 
-       onItemSearch = (event) => {
+    onItemSearch = (event) => {
         this.setState({itemSearch: event.target.value});
+    }
+
+    onFilter = (event) => {
+        this.setState({filter: event.target.value});
     }
 
     searchItem = async () => {
@@ -53,6 +58,7 @@ export class Home extends React.Component {
          }
         this.setState({searchResult: responsePayload.itemId});
         this.setState({searchRating: "rating: " + responsePayload.rating});
+        this.setState({searchType: "type: " + responsePayload.type});
     };
 
     async retrieveProfile() {
@@ -91,7 +97,7 @@ export class Home extends React.Component {
 
     populateList = async () => {
         const url = "/api/itemList";
-
+        const payload = {type: this.state.filter};
         let response;
 
         try {
@@ -100,7 +106,8 @@ export class Home extends React.Component {
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
-                }
+                },
+                body: JSON.stringify(payload)
             });
         } catch (err) {
             this.setState({
@@ -121,8 +128,6 @@ export class Home extends React.Component {
                 rank1: payload.rank1,
                 rank2: payload.rank2,
                 rank3: payload.rank3,
-                rank4: payload.rank4,
-                rank5: payload.rank5,
             });
         } else {
             this.setState({
@@ -145,6 +150,7 @@ export class Home extends React.Component {
                 <button className="btnSearch" onClick={this.searchItem}>Search</button>
                 <p>{this.state.searchResult}</p>
                 <p>{this.state.searchRating}</p>
+                <p>{this.state.searchType}</p>
             </div>
         );
     }
@@ -163,14 +169,20 @@ export class Home extends React.Component {
     renderCardList() {
         return (
             <div className="rankContent">
-                <p className="rankHeader">Top 5</p>
-                <button className="btnSearch" onClick={this.populateList}>Show top 5</button>
+                <p className="rankHeader">Top 3</p>
+                <p>Filter on types</p>
+                <input
+                    type="text"
+                    name="type"
+                    value={this.state.filter}
+                    onChange={this.onFilter}
+                    className="lastInput"
+                />
+                <button className="btnSearch" onClick={this.populateList}>Show top 3</button>
                 <ol className="rankList">
                     <li>{this.state.rank1}</li>
                     <li>{this.state.rank2}</li>
                     <li>{this.state.rank3}</li>
-                    <li>{this.state.rank4}</li>
-                    <li>{this.state.rank5}</li>
                 </ol>
             </div>
         );

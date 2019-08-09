@@ -15,18 +15,18 @@ function addTestData () {
     const user2 = createUser("jane", "123" );
     users.set(user1.id, user1);
     users.set(user2.id, user2);
-    const item1 = createItem("bulbasaur", 4.7);
-    const item2 = createItem("ivysaur", 3.9);
-    const item3 = createItem("venusaur", 3);
-    const item4 = createItem("charmander", 3.6);
-    const item5 = createItem("charmeleon", 2.1);
-    const item6 = createItem("charizard", 5);
-    const item7 = createItem("squirtle", 2);
-    const item8 = createItem("wartortle", 3);
-    const item9 = createItem("blastoise", 4);
-    const item10 = createItem("caterpie", 1.3);
-    const item11 = createItem("metapod", 2.4);
-    const item12 = createItem("butterfree", 4.2);
+    const item1 = createItem("bulbasaur", 4.7, "Grass");
+    const item2 = createItem("ivysaur", 3.9, "Grass");
+    const item3 = createItem("venusaur", 3, "Grass");
+    const item4 = createItem("charmander", 3.6, "Fire");
+    const item5 = createItem("charmeleon", 2.1, "Fire");
+    const item6 = createItem("charizard", 5, "Fire");
+    const item7 = createItem("squirtle", 2, "Water");
+    const item8 = createItem("wartortle", 3, "Water");
+    const item9 = createItem("blastoise", 4, "Water");
+    const item10 = createItem("caterpie", 1.3, "Bug");
+    const item11 = createItem("metapod", 2.4, "Bug");
+    const item12 = createItem("butterfree", 4.2, "Bug");
     items.push(item1);
     items.push(item2);
     items.push(item3);
@@ -54,13 +54,26 @@ function getItem(id){
     }
 }
 
-function getItemsList(top){
+function getItemsList(type){
 
+    console.log(type);
+    let counter = 0;
     let itemArray = [];
 
-    for (let i = 0; i < top; i++) {
-        itemArray.push(items[i]);
+    for (let i = 0; i < items.length; i++) {
+        if (type === "All"){
+            itemArray.push(items[i]);
+            console.log("alle");
+            counter++;
+        }
+        if (type === items[i].type ) {
+            itemArray.push(items[i]);
+            console.log(type + " lagt til");
+            counter++;
+        }
+        if (counter > 2) {break;}
     }
+    console.log(itemArray);
     return itemArray;
 }
 
@@ -80,7 +93,7 @@ function verifyUser(id, password){
     return user.password === password;
 }
 
-function createItem(id, rating) {
+function createItem(id, rating, type) {
 
     if(getItem(id) !== undefined) {
         return false;
@@ -89,8 +102,9 @@ function createItem(id, rating) {
     const item = {
         id: id,
         ratings: [],
-        avgRating: rating
-    }
+        avgRating: rating,
+        type: type
+    };
 
     items.push(item);
 }

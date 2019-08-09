@@ -72,14 +72,13 @@ router.get("/api/user", (req, res) => {
 //Original code
 router.post("/api/itemList", (req, res) => {
 
-    const itemsArray = Db.getItemsList(5);
+    const filter = req.body;
+    const itemsArray = Db.getItemsList(filter.type);
     if(itemsArray) {
         res.json({
             rank1: itemsArray[0].id + " - rating: " + itemsArray[0].avgRating,
             rank2: itemsArray[1].id + " - rating: " + itemsArray[1].avgRating,
             rank3: itemsArray[2].id + " - rating: " + itemsArray[2].avgRating,
-            rank4: itemsArray[3].id + " - rating: " + itemsArray[3].avgRating,
-            rank5: itemsArray[4].id + " - rating: " + itemsArray[4].avgRating,
         });
         res.send();
     }
@@ -94,6 +93,7 @@ router.post("/api/search" , (req, res) => {
         res.json({
             itemId: search.id,
             rating: search.avgRating,
+            type: search.type,
         });
         res.send()
     }
