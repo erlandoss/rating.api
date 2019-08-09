@@ -57,7 +57,9 @@ class HeaderBar extends React.Component {
 
   render() {
     const userId = this.props.userId;
+
     //const ratingCount = this.props.ratingCount;
+    //Not implemented yet as the ability to create new ratings is not completed.
 
     let headerContent;
     if (userId === null || userId === undefined) {

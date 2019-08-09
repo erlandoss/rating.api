@@ -146,3 +146,13 @@ test("Test login after logout", async () =>{
     expect(response.statusCode).toBe(200);
 });
 
+test("Test search non-existent item", async () => {
+
+    const response = await request(app)
+        .post('/api/search')
+        .send({search:'foo_'})
+        .set('Content-Type', 'application/json');
+
+    expect(response.statusCode).toBe(404);
+});
+

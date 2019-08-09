@@ -9,7 +9,6 @@ class Login extends React.Component {
 
         this.state = {
             userId: "",
-            surname: "test",
             password: "",
             errorMsg: null
         };
@@ -77,7 +76,6 @@ class Login extends React.Component {
             <div>
                 <HeaderBar
                     userId={this.props.userId}
-                    surname={this.props.surname}
                     updateLoggedInUserId={this.props.updateLoggedInUserId}
                 />
                 <div className="signupArea">

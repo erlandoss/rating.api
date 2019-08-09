@@ -52,7 +52,7 @@ export class Home extends React.Component {
         const responsePayload = await response.json();
 
         if (responsePayload.status === 404) {
-            this.setState({ errorMsg: "Failed to find user" });
+            this.setState({ errorMsg: "Failed to find item" });
             return;
          }
         this.setState({searchResult: responsePayload.itemId});
@@ -86,7 +86,7 @@ export class Home extends React.Component {
                 errorMsg: null,
             });
             this.props.updateLoggedInUserId(payload.userId);
-            this.props.updateLoggedInUserRatingCount(payload.ratingCount);
+            //this.props.updateLoggedInUserRatingCount(payload.ratingCount);
         } else {
             this.setState({
                 errorMsg: "Issue with HTTP connection: status code " + response.status,
@@ -165,7 +165,7 @@ export class Home extends React.Component {
         );
     }
 
-    renderCardList() {
+    renderPokemonList() {
         return (
             <div className="rankContent">
                 <p className="rankHeader">Top 3</p>
@@ -198,7 +198,7 @@ export class Home extends React.Component {
             userContent = this.renderLoggedIn();
         }
 
-        cardList = this.renderCardList();
+        cardList = this.renderPokemonList();
 
         let error = <div />;
         if (this.state.errorMsg !== null) {

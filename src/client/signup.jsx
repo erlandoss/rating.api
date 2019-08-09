@@ -29,7 +29,7 @@ class SignUp extends React.Component {
     };
 
     doSignUp = async () => {
-        const { userId, surname, hometown, dateOfBirth, password, confirm } = this.state;
+        const { userId, password, confirm } = this.state;
 
         if (confirm !== password) {
             this.setState({ errorMsg: "Passwords do not match" });
@@ -67,7 +67,6 @@ class SignUp extends React.Component {
             });
             return;
         }
-
         this.setState({ errorMsg: null });
         this.props.updateLoggedInUserId(userId);
         this.props.history.push("/");
@@ -92,7 +91,6 @@ class SignUp extends React.Component {
             <div>
                 <HeaderBar
                     userId={this.props.userId}
-                    surname={this.props.surname}
                     updateLoggedInUserId={this.props.updateLoggedInUserId}
                 />
                 <div className="signupArea">

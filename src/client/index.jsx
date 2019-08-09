@@ -23,9 +23,11 @@ export class App extends React.Component {
         this.setState({userId: userId});
     };
 
+    /*
     updateLoggedInUserRatingCount = (ratingCount) => {
         this.setState({ratingCount: ratingCount});
     };
+    */
 
     notFound() {
         return (
@@ -47,23 +49,23 @@ export class App extends React.Component {
                         <Route exact path="/login"
                                render={props => <Login {...props}
                                                        userId={this.state.userId}
-                                                       ratingCount={this.state.ratingCount}
+                                                       //ratingCount={this.state.ratingCount}
                                                        updateLoggedInUserId = {this.updateLoggedInUserId}
-                                                       updateLoggedInUserRatingCount = {this.updateLoggedInUserRatingCount}
+                                                       //updateLoggedInUserRatingCount = {this.updateLoggedInUserRatingCount}
                                />}/>
                         <Route exact path="/signup"
                                render={props => <SignUp {...props}
                                                         userId={this.state.userId}
-                                                        ratingCount={this.state.ratingCount}
+                                                        //ratingCount={this.state.ratingCount}
                                                         updateLoggedInUserId = {this.updateLoggedInUserId}
-                                                        updateLoggedInUserRatingCount = {this.updateLoggedInUserRatingCount}
+                                                        //updateLoggedInUserRatingCount = {this.updateLoggedInUserRatingCount}
                                />}/>
                         <Route exact path="/"
                                render={props => <Home {...props}
                                                       userId={this.state.userId}
-                                                      ratingCount={this.state.ratingCount}
+                                                      //ratingCount={this.state.ratingCount}
                                                       updateLoggedInUserId = {this.updateLoggedInUserId}
-                                                      updateLoggedInUserRatingCount = {this.updateLoggedInUserRatingCount}
+                                                      //updateLoggedInUserRatingCount = {this.updateLoggedInUserRatingCount}
                                />}/>
                         <Route component={this.notFound}/>
                     </Switch>

@@ -14,7 +14,7 @@ Alternatively you could register a new user.
 After logged in you could also search after ratings for more pokemon. For now there are only the first 12 pokemon to search from.
 This search input-field is also not handled for user-error and will simply not give any response to the user if no match was found.
 
-yarn test yields 22.08 %Stmts on All files.
+yarn test yields 23.93 %Stmts on All files.
 
 Requirements for B-grade has not been met as Web-Sockets have not been implemented. 
 Regarding requirements for D-grade most have been met, yet PUT and DELETE have not been implemented.
